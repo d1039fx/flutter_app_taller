@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "813638407160",
+    "firebase_url": "https://taller-5708e.firebaseio.com",
+    "project_id": "taller-5708e",
+    "storage_bucket": "taller-5708e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813638407160:android:19734a40c3c0277d",
+        "android_client_info": {
+          "package_name": "com.taller.flutter_app_taller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813638407160-rnnhsj035foo7ued7j0k0snasnshqcvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPI__QZ8EPf8zHkp_xRRb4W1azXZJpQug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813638407160-rnnhsj035foo7ued7j0k0snasnshqcvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
