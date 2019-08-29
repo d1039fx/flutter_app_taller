@@ -1,7 +1,8 @@
 # flutter_app_taller
-Descarga el git y abre el proyecto en Android Studio o Visual studio, en linux puede usar git clone https://github.com/d1039fx/flutter_app_taller.git se crear una carpeta en /home/(usuario) con el nombre flutter_app_taller
 
 Aplicacion didactica.
+
+Descarga el git y abre el proyecto en Android Studio o Visual studio, en linux puede usar git clone https://github.com/d1039fx/flutter_app_taller.git se crear una carpeta en /home/(usuario) con el nombre flutter_app_taller
 
 ## Getting Started
 
