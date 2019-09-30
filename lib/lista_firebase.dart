@@ -84,90 +84,6 @@ class _IngresoUsuariosState extends State<IngresoUsuarios> {
   }
 }
 
-class ActualizarUsuario extends StatefulWidget {
-  final String idUsuarios;
-  final String nombre;
-  final String apellidos;
-
-  const ActualizarUsuario(
-      {Key key, this.idUsuarios, this.nombre, this.apellidos})
-      : super(key: key);
-
-  @override
-  _ActualizarUsuarioState createState() => _ActualizarUsuarioState();
-}
-
-class _ActualizarUsuarioState extends State<ActualizarUsuario> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController nombre = TextEditingController();
-  final TextEditingController apellido = TextEditingController();
-  //creamos una instancia de firestores
-  Firestore _datos = Firestore.instance;
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-        key: _formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            TextFormField(
-              controller: nombre,
-              decoration: InputDecoration(
-                  helperText: 'Actualizar nombre: ${widget.nombre}'),
-              //ingresamos un validador
-              validator: (validador) {
-                if (validador.isEmpty) {
-                  return 'ingresar valor';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: apellido,
-              decoration: InputDecoration(
-                  helperText: 'Actualizar apellido: ${widget.apellidos}'),
-              //ingresamos un validador
-              validator: (validador) {
-                if (validador.isEmpty) {
-                  return 'ingresar valor';
-                }
-                return null;
-              },
-            ),
-            Row(
-              children: <Widget>[
-                FlatButton.icon(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: Icon(Icons.clear, color: Colors.red[800]),
-                    label: Text('Salir')),
-                FlatButton.icon(
-                    icon: Icon(
-                      Icons.update,
-                      color: Colors.green[800],
-                    ),
-                    label: Text('Actualizar datos'),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _datos
-                            .collection('taller')
-                            .document(widget.idUsuarios)
-                            .updateData({
-                          'nombre': nombre.text,
-                          'apellido': apellido.text
-                        }).whenComplete(() {
-                          Navigator.of(context).pop();
-                          nombre.clear();
-                          apellido.clear();
-                        });
-                      }
-                    }),
-              ],
-            )
-          ],
-        ));
-  }
-}
 
 //este widget es para mostrar los datos
 class ListaUsuariosFirebase extends StatelessWidget {
@@ -201,21 +117,7 @@ class ListaUsuariosFirebase extends StatelessWidget {
                             width: 50,
                             child: FlatButton(
                                 padding: const EdgeInsets.all(0),
-                                onPressed: () => showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Text('Actualizar item'),
-                                        content: SizedBox(
-                                          height: 250,
-                                          child: ActualizarUsuario(
-                                            idUsuarios: doc.documentID,
-                                            nombre: doc['nombre'],
-                                            apellidos: doc['apellido'],
-                                          ),
-                                        ),
-                                      );
-                                    }),
+                                onPressed: null,
                                 child: Icon(
                                   Icons.edit,
                                   color: Colors.green[800],
@@ -225,7 +127,7 @@ class ListaUsuariosFirebase extends StatelessWidget {
                             width: 50,
                             child: FlatButton(
                                 padding: const EdgeInsets.all(0),
-                                onPressed: null
+                                onPressed: null,
                                 child: Icon(
                                   Icons.delete,
                                   color: Colors.red[800],
