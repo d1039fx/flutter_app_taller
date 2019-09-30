@@ -10,8 +10,7 @@ class ListaFirebase extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          IngresoUsuarios(),
-          
+          IngresoUsuarios(),       
         ],
       ),
     );
@@ -85,5 +84,62 @@ class _IngresoUsuariosState extends State<IngresoUsuarios> {
   }
 }
 
+//este widget es para mostrar los datos
+class ListaUsuariosFirebase extends StatelessWidget {
+  //creamos una instancia de firebase
+  final _datos = Firestore.instance;
 
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: _datos.collection('taller').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError)
+            return Center(
+              child: Text('Error en la lectura de datos'),
+            );
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return CircularProgressIndicator();
+            default:
+              //mostramos un Map con los resultados
+              return ListView(
+                children: snapshot.data.documents.map((DocumentSnapshot doc) {
+                  return ListTile(
+                    title: Text(doc['nombre']),
+                    subtitle: Text(doc['apellido']),
+                    trailing: SizedBox(
+                      width: 100,
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 50,
+                            child: FlatButton(
+                                padding: const EdgeInsets.all(0),
+                                onPressed: null
+                                child: Icon(
+                                  Icons.edit,
+                                  color: Colors.green[800],
+                                )),
+                          ),
+                          SizedBox(
+                            width: 50,
+                            child: FlatButton(
+                                padding: const EdgeInsets.all(0),
+                                onPressed: null
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.red[800],
+                                )),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );
+          }
+        });
+  }
+}
 
