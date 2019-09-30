@@ -10,7 +10,8 @@ class ListaFirebase extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          IngresoUsuarios(),       
+          IngresoUsuarios(),
+          Expanded(child: ListaUsuariosFirebase())       
         ],
       ),
     );
@@ -85,6 +86,7 @@ class _IngresoUsuariosState extends State<IngresoUsuarios> {
 }
 
 
+
 //este widget es para mostrar los datos
 class ListaUsuariosFirebase extends StatelessWidget {
   //creamos una instancia de firebase
@@ -127,7 +129,13 @@ class ListaUsuariosFirebase extends StatelessWidget {
                             width: 50,
                             child: FlatButton(
                                 padding: const EdgeInsets.all(0),
-                                onPressed: null,
+                                onPressed: () => _datos
+                                                      .collection('taller')
+                                                      .document(doc.documentID)
+                                                      .delete()
+                                                      .whenComplete(() {
+                                                    Navigator.of(context).pop();
+                                                  }),
                                 child: Icon(
                                   Icons.delete,
                                   color: Colors.red[800],
