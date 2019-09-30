@@ -10,7 +10,8 @@ class ListaFirebase extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          IngresoUsuarios(),       
+          IngresoUsuarios(),
+          Expanded(child: ListaUsuariosFirebase())      
         ],
       ),
     );
