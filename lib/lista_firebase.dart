@@ -201,7 +201,21 @@ class ListaUsuariosFirebase extends StatelessWidget {
                             width: 50,
                             child: FlatButton(
                                 padding: const EdgeInsets.all(0),
-                                onPressed: null
+                                onPressed: () => showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('Actualizar item'),
+                                        content: SizedBox(
+                                          height: 250,
+                                          child: ActualizarUsuario(
+                                            idUsuarios: doc.documentID,
+                                            nombre: doc['nombre'],
+                                            apellidos: doc['apellido'],
+                                          ),
+                                        ),
+                                      );
+                                    }),
                                 child: Icon(
                                   Icons.edit,
                                   color: Colors.green[800],
